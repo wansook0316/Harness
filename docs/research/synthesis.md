@@ -46,7 +46,7 @@
 
 ---
 
-### GP. Product Context — 서비스 정체성
+### G1. Product Context — 서비스 정체성
 > 에이전트가 "무엇을 위한" 코드를 작성하는지 이해하는가?
 
 에이전트는 기술적으로 완벽하지만 제품적으로 틀린 코드를 만들 수 있다.
@@ -64,7 +64,7 @@
 
 ---
 
-### G0. Foundation — 환경 재현성
+### G2. Foundation — 환경 재현성
 > 에이전트가 이 프로젝트를 실행할 수 있는가? (모든 검증의 전제 조건)
 
 | ID | 진단 항목 | 판단 기준 |
@@ -75,7 +75,7 @@
 
 ---
 
-### G1. Entry & Navigation — 진입과 탐색
+### G3. Entry & Navigation — 진입과 탐색
 > 에이전트가 프로젝트에 착지한 직후 길을 찾을 수 있는가?
 
 | ID | 진단 항목 | 판단 기준 |
@@ -89,7 +89,7 @@
 
 ---
 
-### G2. Architecture & Structure — 구조와 확장성
+### G4. Architecture & Structure — 구조와 확장성
 > 프로젝트 구조 자체가 에이전트의 실수를 방지하는가?
 
 | ID | 진단 항목 | 판단 기준 |
@@ -104,7 +104,7 @@
 
 ---
 
-### G3. Verification & Quality Gate — 검증과 품질 관문
+### G5. Verification & Quality Gate — 검증과 품질 관문
 > 에이전트의 산출물을 자동으로 검증할 수 있는가?
 
 | ID | 진단 항목 | 판단 기준 |
@@ -116,7 +116,7 @@
 
 ---
 
-### G4. Specification & Documentation — 명세와 문서
+### G6. Specification & Documentation — 명세와 문서
 > 의도가 정형화되어 있고, 문서가 코드와 함께 살아 있는가?
 
 | ID | 진단 항목 | 판단 기준 |
@@ -128,7 +128,7 @@
 
 ---
 
-### G5. Operations & Maintenance — 운영과 유지
+### G7. Operations & Maintenance — 운영과 유지
 > 배포 후에도 하네스가 작동하는가?
 
 | ID | 진단 항목 | 판단 기준 |
@@ -144,12 +144,12 @@
 
 ```
   ┌───────────────────────────────────────────────────┐
-  │              GP. Product Context                   │
+  │              G1. Product Context                   │
   │        (서비스 정체성 — 최상위 컨텍스트)              │
   └────────────────────────┬──────────────────────────┘
                            │
   ┌────────────────────────▼──────────────────────────┐
-  │              G0. Foundation                        │
+  │              G2. Foundation                        │
   │        (환경 재현성 — 기술적 전제 조건)               │
   └────────────────────────┬──────────────────────────┘
                            │
@@ -158,26 +158,26 @@
    ┌────▼─────┐     ┌─────▼──────┐     ┌─────────▼──┐
    │  INFORM  │     │   VERIFY   │     │   CORRECT  │
    │          │     │            │     │            │
-   │ G1 Entry │     │ G3 Quality │     │ G5 Ops     │
-   │ G4 Spec  │     │    Gate    │     │            │
+   │ G3 Entry │     │ G5 Quality │     │ G7 Ops     │
+   │ G6 Spec  │     │    Gate    │     │            │
    │          │     │            │     │            │
    └────┬─────┘     └─────┬──────┘     └────────────┘
         │                 │
         └────────┬────────┘
                  │
           ┌──────▼──────┐
-          │ G2 Archi-   │
+          │ G4 Archi-   │
           │ tecture     │
           │ (교차 영역)  │
           └─────────────┘
 ```
 
-- **GP (서비스)** 는 모든 그룹의 최상위 컨텍스트 — "왜, 누구를 위해"가 없으면 나머지가 방향을 잃는다
-- **G0 (환경)** 은 세 축 모두의 기술적 전제 조건
-- **Inform** ← G1 (진입과 탐색) + G4 (명세와 문서)
-- **Verify** ← G3 (검증과 품질 관문)
-- **Correct** ← G5 (운영과 유지)
-- **G2 (구조)** 는 Inform과 Verify에 걸친다 — 좋은 구조 자체가 컨텍스트이면서 검증 장치
+- **G1 (서비스)** 는 모든 그룹의 최상위 컨텍스트 — "왜, 누구를 위해"가 없으면 나머지가 방향을 잃는다
+- **G2 (환경)** 은 세 축 모두의 기술적 전제 조건
+- **Inform** ← G3 (진입과 탐색) + G6 (명세와 문서)
+- **Verify** ← G5 (검증과 품질 관문)
+- **Correct** ← G7 (운영과 유지)
+- **G4 (구조)** 는 Inform과 Verify에 걸친다 — 좋은 구조 자체가 컨텍스트이면서 검증 장치
 
 ---
 
@@ -195,13 +195,13 @@ Level 4: Optimized  자동 교정 + 인지 부채 관리. 하네스가 스스로
 
 | 그룹 | Level 0 | Level 1 | Level 2 | Level 3 | Level 4 |
 |------|---------|---------|---------|---------|---------|
-| **GP Product** | 서비스 정의 없음 | 구두/암묵적 이해 | product brief + 페르소나 문서 | + 성공 지표 + 스코프 경계 명확 | + 지표 기반 자동 의사결정 |
-| **G0 Foundation** | setup 절차 없음 | README에 수동 절차 | Docker/devcontainer | 1-command setup + seed data | 자동 환경 검증 + drift 감지 |
-| **G1 Entry** | 진입점 없음 | AGENTS.md 존재 | + Constitution + glossary | + 계층적 문서 + 금지 규칙 | + 동적 컨텍스트 자동 주입 |
-| **G2 Architecture** | 구조 없음 | 기본 디렉토리 구조 | + 레이어 정의 + 타입 strict | + 의존성 강제 + 컨벤션 통일 | + 자동 구조 검증 |
-| **G3 Verification** | 테스트 없음 | 기본 린터 | + CI + pre-commit hook | + 커버리지 기준 + 아키텍처 테스트 | + 명세 기반 자동 검증 |
-| **G4 Specification** | 문서 없음 | README | + API 명세 + ADR | + 스펙 제1문서 + 신선도 체크 | + 문서-코드 자동 동기화 |
-| **G5 Operations** | 없음 | 수동 배포 | + 모니터링 + Git 전략 | + GC 에이전트 + 롤백 전략 | + 자기 수리 + 인지 부채 모니터링 |
+| **G1 Product** | 서비스 정의 없음 | 구두/암묵적 이해 | product brief + 페르소나 문서 | + 성공 지표 + 스코프 경계 명확 | + 지표 기반 자동 의사결정 |
+| **G2 Foundation** | setup 절차 없음 | README에 수동 절차 | Docker/devcontainer | 1-command setup + seed data | 자동 환경 검증 + drift 감지 |
+| **G3 Entry** | 진입점 없음 | AGENTS.md 존재 | + Constitution + glossary | + 계층적 문서 + 금지 규칙 | + 동적 컨텍스트 자동 주입 |
+| **G4 Architecture** | 구조 없음 | 기본 디렉토리 구조 | + 레이어 정의 + 타입 strict | + 의존성 강제 + 컨벤션 통일 | + 자동 구조 검증 |
+| **G5 Verification** | 테스트 없음 | 기본 린터 | + CI + pre-commit hook | + 커버리지 기준 + 아키텍처 테스트 | + 명세 기반 자동 검증 |
+| **G6 Specification** | 문서 없음 | README | + API 명세 + ADR | + 스펙 제1문서 + 신선도 체크 | + 문서-코드 자동 동기화 |
+| **G7 Operations** | 없음 | 수동 배포 | + 모니터링 + Git 전략 | + GC 에이전트 + 롤백 전략 | + 자기 수리 + 인지 부채 모니터링 |
 
 ---
 
@@ -216,19 +216,19 @@ Level 4: Optimized  자동 교정 + 인지 부채 관리. 하네스가 스스로
 
   Overall: Level 2 (Guided)
 
-  [GP Product]        ████████████░░░░░░░░  3/6  Level 1
-  [G0 Foundation]     ████████████████████░  4/4  Level 3
-  [G1 Entry]          ██████████░░░░░░░░░░  3/6  Level 1
-  [G2 Architecture]   ████████████████░░░░  5/7  Level 2
-  [G3 Verification]   ████████████████░░░░  3/4  Level 2
-  [G4 Specification]  ████████░░░░░░░░░░░░  2/4  Level 1
-  [G5 Operations]     ████░░░░░░░░░░░░░░░░  1/4  Level 1
+  [G1 Product]        ████████████░░░░░░░░  3/6  Level 1
+  [G2 Foundation]     ████████████████████░  4/4  Level 3
+  [G3 Entry]          ██████████░░░░░░░░░░  3/6  Level 1
+  [G4 Architecture]   ████████████████░░░░  5/7  Level 2
+  [G5 Verification]   ████████████████░░░░  3/4  Level 2
+  [G6 Specification]  ████████░░░░░░░░░░░░  2/4  Level 1
+  [G7 Operations]     ████░░░░░░░░░░░░░░░░  1/4  Level 1
 
 ───────────────────────────────────────────────────
   Detail
 ───────────────────────────────────────────────────
 
-  GP. Product Context
+  G1. Product Context
     ✓ P1  핵심 문제 정의됨 (README에 기술)
     ✗ P2  타겟 사용자 미정의 — "개발자" 수준의 모호한 정의
     ✓ P3  서비스 철학 존재 (product principles)
@@ -236,12 +236,12 @@ Level 4: Optimized  자동 교정 + 인지 부채 관리. 하네스가 스스로
     ✓ P5  성공 지표 일부 존재 (MAU 목표)
     ✗ P6  스코프 경계 불명확 — MVP 이후 로드맵 미정리
 
-  G0. Foundation
+  G2. Foundation
     ✓ F1  Docker compose로 1-command setup 가능
     ✓ F2  package-lock.json 존재 및 최신
     ✓ F3  .env.example 존재, 테스트키 문서화
 
-  G1. Entry & Navigation
+  G3. Entry & Navigation
     ✓ E1  CLAUDE.md 존재
     ✗ E2  모듈별 깊이 문서 없음 — 진입점에서 바로 코드
     ✗ E3  Context 문서가 과도 (CLAUDE.md 800줄)
@@ -249,7 +249,7 @@ Level 4: Optimized  자동 교정 + 인지 부채 관리. 하네스가 스스로
     ✗ E5  도메인 glossary 없음
     ✗ E6  금지 규칙 없음
 
-  G2. Architecture & Structure
+  G4. Architecture & Structure
     ✓ A1  모듈 경계 분명
     ✓ A2  클린 아키텍처 적용
     ✓ A3  기술 스택 적절
@@ -258,19 +258,19 @@ Level 4: Optimized  자동 교정 + 인지 부채 관리. 하네스가 스스로
     - A6  (UI 없음 — 해당 없음)
     ✓ A7  TypeScript strict mode
 
-  G3. Verification & Quality Gate
+  G5. Verification & Quality Gate
     ✓ V1  Jest 단위테스트 + Playwright E2E
     ✓ V2  ESLint + Prettier 설정
     ✓ V3  GitHub Actions CI, PR 자동 체크
     ✗ V4  pre-commit hook 없음
 
-  G4. Specification & Documentation
+  G6. Specification & Documentation
     ✗ S1  스펙 문서 없음 — 코드가 곧 스펙
     ✗ S2  문서 신선도 관리 없음
     ✓ S3  OpenAPI spec 존재
     ✓ S4  ADR 디렉토리 존재 (3개 기록)
 
-  G5. Operations & Maintenance
+  G7. Operations & Maintenance
     ✓ O1  Datadog 모니터링
     ✗ O2  GC 에이전트 없음
     ✗ O3  브랜치 전략 미정의
